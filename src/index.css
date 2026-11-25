@@ -1,0 +1,104 @@
+/* Tabler.io Lighter Dark Theme Overrides */
+:root,
+[data-bs-theme='dark'] {
+  --tblr-font-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --tblr-font-monospace: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Lighter, airy slate dark palette */
+  --tblr-body-bg: #151e2c;
+  --tblr-body-color: #e2e8f0;
+  --tblr-secondary-color: #94a3b8;
+  --tblr-muted: #94a3b8;
+
+  --tblr-bg-surface: #1c2738;
+  --tblr-bg-surface-secondary: #222f43;
+  --tblr-bg-surface-tertiary: #28374e;
+  --tblr-bg-forms: #162030;
+
+  --tblr-border-color: rgba(148, 163, 184, 0.16);
+  --tblr-border-color-translucent: rgba(148, 163, 184, 0.16);
+  --tblr-card-bg: #1c2738;
+  --tblr-card-border-color: rgba(148, 163, 184, 0.15);
+
+  --tblr-primary: #3b82f6;
+  --tblr-primary-rgb: 59, 130, 246;
+}
+
+body {
+  background-color: var(--tblr-body-bg);
+  color: var(--tblr-body-color);
+  font-family: var(--tblr-font-sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono,
+.tabular-nums {
+  font-family: var(--tblr-font-monospace);
+  font-variant-numeric: tabular-nums;
+}
+
+.navbar-tabler-custom {
+  background-color: #192434;
+  border-bottom: 1px solid var(--tblr-border-color);
+}
+
+.card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+}
+
+.table-vcenter td,
+.table-vcenter th {
+  vertical-align: middle;
+}
+
+.table thead th {
+  background-color: rgba(34, 47, 67, 0.72);
+  color: #94a3b8;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.table tbody tr {
+  transition: background-color 0.12s ease;
+}
+
+.table tbody tr.pinned-row {
+  background-color: rgba(59, 130, 246, 0.12);
+  box-shadow: inset 3px 0 0 #3b82f6;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spinSlow 0.9s linear infinite;
+}
+
+/* Custom slim scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #151e2c;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}

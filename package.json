@@ -1,0 +1,37 @@
+{
+  "name": "llm-model-comparator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c cyan,magenta \"tsx watch server/index.ts\" \"vite\"",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "harvest": "tsx server/run-harvest.ts",
+    "start": "tsx server/index.ts"
+  },
+  "dependencies": {
+    "@tabler/core": "^1.7.5",
+    "@types/plotly.js": "^3.0.15",
+    "@types/swagger-ui-express": "^4.1.8",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "lucide-react": "^0.511.0",
+    "plotly.js-dist-min": "^4.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.5.0",
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
