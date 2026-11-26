@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "harvest": "tsx server/run-harvest.ts",
-    "start": "tsx server/index.ts"
+    "start": "tsx server/index.ts",
+    "deploy": "gcloud run deploy ai-model-insight --source . --project=aether9-llm-matrix-2026 --region=us-east1 --allow-unauthenticated --memory=512Mi --cpu=1 --min-instances=0 --max-instances=5 --quiet"
   },
   "dependencies": {
     "@tabler/core": "^1.7.5",

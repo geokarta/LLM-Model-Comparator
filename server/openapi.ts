@@ -2,8 +2,8 @@ export function buildOpenApiSpec(serverUrl: string) {
   return {
     openapi: '3.0.3',
     info: {
-      title: 'LLM Comparator & Cost Telemetry API',
-      version: '2026.11.2',
+      title: 'AI Model Insight API',
+      version: '2026.11.3',
       description:
         'API REST complète pour consulter les modèles LLM (2 dernières générations, 8 fournisseurs), leurs benchmarks (ARC-AGI 1/2/3, SWE-bench, GPQA, HLE, etc.), calculer les coûts par tokens en USD/CAD/devises live, et déclencher le moissonnage des tarifs.',
     },

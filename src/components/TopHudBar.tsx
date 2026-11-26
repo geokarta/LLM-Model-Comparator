@@ -40,7 +40,7 @@ export function TopHudBar({
           </span>
           <div>
             <div className="fw-bold lh-1" style={{ fontSize: '0.98rem' }}>
-              LLM Comparator
+              AI Model Insight
             </div>
             <div className="text-secondary" style={{ fontSize: '0.72rem' }}>
               {modelCount} modèles · {benchmarkCount} benchmarks · MAJ {formattedDate}
