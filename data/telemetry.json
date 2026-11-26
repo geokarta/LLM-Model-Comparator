@@ -1,6 +1,6 @@
 {
-  "version": "2026.11.2",
-  "lastHarvestAt": "2026-11-25T05:04:38.615Z",
+  "version": "2026.11.3",
+  "lastHarvestAt": "2026-11-25T23:59:18.757Z",
   "providers": [
     {
       "id": "openai",
@@ -260,7 +260,7 @@
       "generationLabel": "GPT-6.x",
       "tier": "flagship",
       "positioning": "Frontier Absolu • Raisonnement & Agents Autonomes",
-      "releaseDate": "2026-10",
+      "releaseDate": "2026-11-17",
       "openWeight": false,
       "contextWindow": 1050000,
       "maxOutputTokens": 128000,
@@ -316,7 +316,7 @@
       },
       "notes": "Référence absolue sur ARC-AGI-2 et ARC-AGI-3 (100% d’efficience humaine).",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "openai-gpt-6-sol",
@@ -327,7 +327,7 @@
       "generationLabel": "GPT-6.x",
       "tier": "balanced",
       "positioning": "Polyvalent Entreprise • Équilibre Puissance/Coût",
-      "releaseDate": "2026-07",
+      "releaseDate": "2026-09-22",
       "openWeight": false,
       "contextWindow": 1050000,
       "maxOutputTokens": 64000,
@@ -383,7 +383,7 @@
       },
       "notes": "Version équilibrée de la génération GPT-6 : 3x moins chère qu’Astra tout en conservant >94% sur ARC-AGI-2.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "openai-gpt-6-luna-mini",
@@ -394,7 +394,7 @@
       "generationLabel": "GPT-6.x",
       "tier": "fast",
       "positioning": "Haute Vitesse • Subagents & Volume",
-      "releaseDate": "2026-08",
+      "releaseDate": "2026-09-22",
       "openWeight": false,
       "contextWindow": 1050000,
       "maxOutputTokens": 32000,
@@ -450,7 +450,7 @@
       },
       "notes": "Modèle rapide à très bas coût pour pipelines à fort volume et exécution parallèle.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "openai-gpt-5-4-pro",
@@ -461,7 +461,7 @@
       "generationLabel": "GPT-5.x",
       "tier": "flagship",
       "positioning": "Gen N-1 Flagship • Raisonnement & Code Solide",
-      "releaseDate": "2026-02",
+      "releaseDate": "2026-03-05",
       "openWeight": false,
       "contextWindow": 1050000,
       "maxOutputTokens": 128000,
@@ -517,7 +517,7 @@
       },
       "notes": "Ancien flagship GPT-5.x : toujours très pertinent en génie logiciel et raisonnement scientifique.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "openai-gpt-5-2",
@@ -528,7 +528,7 @@
       "generationLabel": "GPT-5.x",
       "tier": "balanced",
       "positioning": "Gen N-1 Polyvalent • Production Stable",
-      "releaseDate": "2025-12",
+      "releaseDate": "2025-12-10",
       "openWeight": false,
       "contextWindow": 400000,
       "maxOutputTokens": 64000,
@@ -584,7 +584,7 @@
       },
       "notes": "Modèle de transition GPT-5.2 montrant le saut majeur réalisé par la génération GPT-6 sur ARC-AGI-2/3.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "openai-gpt-5-mini",
@@ -595,7 +595,7 @@
       "generationLabel": "GPT-5.x",
       "tier": "fast",
       "positioning": "Gen N-1 Rapide • Workflows Économiques",
-      "releaseDate": "2025-08",
+      "releaseDate": "2025-08-07",
       "openWeight": false,
       "contextWindow": 400000,
       "maxOutputTokens": 32000,
@@ -651,7 +651,7 @@
       },
       "notes": "Petit modèle de génération 5 remplacé en performance et coût par GPT-6 Luna Mini.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "google-gemini-4-carbon",
@@ -662,7 +662,7 @@
       "generationLabel": "Gemini 4",
       "tier": "flagship",
       "positioning": "Flagship Raisonnement Profond • Architecture Long-Horizon",
-      "releaseDate": "2026-10",
+      "releaseDate": "2026-11-10",
       "openWeight": false,
       "contextWindow": 1048576,
       "maxOutputTokens": 128000,
@@ -718,7 +718,7 @@
       },
       "notes": "Meilleur ratio puissance/prix dans la catégorie Frontier absolu (99.1% ARC-AGI-3).",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "google-gemini-4-neon",
@@ -729,7 +729,7 @@
       "generationLabel": "Gemini 4",
       "tier": "balanced",
       "positioning": "Workhorse Quotidien • Code Complexe & Efficience",
-      "releaseDate": "2026-10",
+      "releaseDate": "2026-11-18",
       "openWeight": false,
       "contextWindow": 1048576,
       "maxOutputTokens": 64000,
@@ -785,7 +785,7 @@
       },
       "notes": "Champion du rapport qualité/vitesse/coût chez Google.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "google-gemini-4-hydrogen",
@@ -796,7 +796,7 @@
       "generationLabel": "Gemini 4",
       "tier": "fast",
       "positioning": "Exécution Ultra-Rapide • Subagents & Tâches Courantes",
-      "releaseDate": "2026-09",
+      "releaseDate": "2026-11-12",
       "openWeight": false,
       "contextWindow": 1048576,
       "maxOutputTokens": 32000,
@@ -852,7 +852,7 @@
       },
       "notes": "Idéal en duo avec Neon/Carbon via Orchestrator : latence ultra-basse et coût minimal.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "google-gemini-3-1-pro",
@@ -863,7 +863,7 @@
       "generationLabel": "Gemini 3.x",
       "tier": "flagship",
       "positioning": "Gen N-1 Flagship • Contexte Massif & Multimodal",
-      "releaseDate": "2026-02",
+      "releaseDate": "2026-02-19",
       "openWeight": false,
       "contextWindow": 1048576,
       "maxOutputTokens": 65536,
@@ -919,7 +919,7 @@
       },
       "notes": "Référence de la génération Gemini 3, largement dépassé par Gemini 4 Carbon/Neon sur ARC-AGI-2/3.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "google-gemini-3-flash",
@@ -930,7 +930,7 @@
       "generationLabel": "Gemini 3.x",
       "tier": "fast",
       "positioning": "Gen N-1 Ultra-Rapide • Haut Débit Multimodal",
-      "releaseDate": "2025-12",
+      "releaseDate": "2025-12-17",
       "openWeight": false,
       "contextWindow": 1048576,
       "maxOutputTokens": 65536,
@@ -986,7 +986,7 @@
       },
       "notes": "Modèle rapide de la génération Gemini 3 avant l’arrivée de Gemini 4 Hydrogen.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "anthropic-claude-fable-5-2",
@@ -997,7 +997,7 @@
       "generationLabel": "Claude 5.x",
       "tier": "flagship",
       "positioning": "Flagship Agentique • Génie Logiciel & Raisonnement Long",
-      "releaseDate": "2026-10",
+      "releaseDate": "2026-11-09",
       "openWeight": false,
       "contextWindow": 1000000,
       "maxOutputTokens": 128000,
@@ -1053,7 +1053,7 @@
       },
       "notes": "Leader incontesté en génie logiciel agentique (SWE-bench Verified 85.2% et Terminal-Bench 82.4%).",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "anthropic-claude-sonnet-5-5",
@@ -1064,7 +1064,7 @@
       "generationLabel": "Claude 5.x",
       "tier": "balanced",
       "positioning": "Développement Quotidien • Précision & Fiabilité Code",
-      "releaseDate": "2026-08",
+      "releaseDate": "2026-09-28",
       "openWeight": false,
       "contextWindow": 1000000,
       "maxOutputTokens": 64000,
@@ -1120,7 +1120,7 @@
       },
       "notes": "Référence des développeurs pour le code au quotidien.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "anthropic-claude-haiku-5",
@@ -1131,7 +1131,7 @@
       "generationLabel": "Claude 5.x",
       "tier": "fast",
       "positioning": "Ultra-Réactif • Classification, Routage & Micro-Agents",
-      "releaseDate": "2026-06",
+      "releaseDate": "2026-10-07",
       "openWeight": false,
       "contextWindow": 1000000,
       "maxOutputTokens": 32000,
@@ -1187,7 +1187,7 @@
       },
       "notes": "Excellente fidélité aux instructions et très faible latence.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "anthropic-claude-opus-4-6",
@@ -1198,7 +1198,7 @@
       "generationLabel": "Claude 4.x",
       "tier": "flagship",
       "positioning": "Gen N-1 Flagship • Code & Raisonnement Longue Durée",
-      "releaseDate": "2026-02",
+      "releaseDate": "2026-02-04",
       "openWeight": false,
       "contextWindow": 1000000,
       "maxOutputTokens": 128000,
@@ -1254,7 +1254,7 @@
       },
       "notes": "Ancien flagship Claude 4.x : référence SWE-bench 2026 début d’année.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "anthropic-claude-sonnet-4-5",
@@ -1265,7 +1265,7 @@
       "generationLabel": "Claude 4.x",
       "tier": "balanced",
       "positioning": "Gen N-1 Polyvalent • Édition de Code Fiable",
-      "releaseDate": "2025-09",
+      "releaseDate": "2025-09-29",
       "openWeight": false,
       "contextWindow": 1000000,
       "maxOutputTokens": 64000,
@@ -1321,7 +1321,7 @@
       },
       "notes": "Pilier historique du développement assisté de la génération Claude 4.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "anthropic-claude-haiku-4-5",
@@ -1332,7 +1332,7 @@
       "generationLabel": "Claude 4.x",
       "tier": "fast",
       "positioning": "Gen N-1 Rapide • Latence Faible & Volume",
-      "releaseDate": "2025-10",
+      "releaseDate": "2025-10-15",
       "openWeight": false,
       "contextWindow": 200000,
       "maxOutputTokens": 64000,
@@ -1388,7 +1388,7 @@
       },
       "notes": "Génération précédente Haiku, nettement plus coûteuse que Haiku 5.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "deepseek-v4-pro",
@@ -1399,12 +1399,12 @@
       "generationLabel": "DeepSeek V4",
       "tier": "open-weight",
       "positioning": "Open-Weight Frontier • Rapport Coût/Puissance Disruptif",
-      "releaseDate": "2026-09",
+      "releaseDate": "2026-04-24",
       "openWeight": true,
       "contextWindow": 1048576,
       "maxOutputTokens": 64000,
-      "inputPricePer1M": 1.28,
-      "outputPricePer1M": 2.56,
+      "inputPricePer1M": 0.8882,
+      "outputPricePer1M": 1.5463,
       "avgCostPerTaskUsd": 0.11,
       "speedTokPerSec": 112,
       "latencyTtftMs": 540,
@@ -1454,8 +1454,8 @@
         }
       },
       "notes": "Rivalise avec les modèles propriétaires à une fraction du coût.",
-      "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "priceSource": "openrouter-live",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "deepseek-v4-1-flash",
@@ -1466,12 +1466,12 @@
       "generationLabel": "DeepSeek V4",
       "tier": "open-weight",
       "positioning": "Open-Weight Ultra-Économique • Raisonnement Rapide",
-      "releaseDate": "2026-10",
+      "releaseDate": "2026-09-10",
       "openWeight": true,
       "contextWindow": 1048576,
       "maxOutputTokens": 32000,
-      "inputPricePer1M": 0.14,
-      "outputPricePer1M": 0.42,
+      "inputPricePer1M": 0.051,
+      "outputPricePer1M": 0.567,
       "avgCostPerTaskUsd": 0.025,
       "speedTokPerSec": 215,
       "latencyTtftMs": 260,
@@ -1521,8 +1521,8 @@
         }
       },
       "notes": "Score impressionnant sur ARC-AGI-2 (78.1%) pour $0.03/tâche.",
-      "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "priceSource": "openrouter-live",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "deepseek-r1-0528",
@@ -1533,7 +1533,7 @@
       "generationLabel": "DeepSeek V3/R1",
       "tier": "reasoning",
       "positioning": "Gen N-1 Reasoning Open-Weight • Maths & Logique",
-      "releaseDate": "2025-05",
+      "releaseDate": "2025-05-28",
       "openWeight": true,
       "contextWindow": 163840,
       "maxOutputTokens": 64000,
@@ -1589,7 +1589,7 @@
       },
       "notes": "Modèle de raisonnement open-weight emblématique de la génération précédente.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "deepseek-v3-2",
@@ -1600,7 +1600,7 @@
       "generationLabel": "DeepSeek V3/R1",
       "tier": "open-weight",
       "positioning": "Gen N-1 Polyvalent • Très Bas Coût API",
-      "releaseDate": "2025-12",
+      "releaseDate": "2025-03-24",
       "openWeight": true,
       "contextWindow": 163840,
       "maxOutputTokens": 32000,
@@ -1656,7 +1656,7 @@
       },
       "notes": "Ancien workhorse open-weight de DeepSeek, remplacé par la série V4.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "xai-grok-4-7",
@@ -1667,7 +1667,7 @@
       "generationLabel": "Grok 4.x",
       "tier": "reasoning",
       "positioning": "Raisonnement Scientifique & Temps Réel Haute Vitesse",
-      "releaseDate": "2026-10",
+      "releaseDate": "2026-09-21",
       "openWeight": false,
       "contextWindow": 500000,
       "maxOutputTokens": 64000,
@@ -1723,7 +1723,7 @@
       },
       "notes": "Très fort en sciences (GPQA 94.2%), mathématiques et rapidité d’inférence.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "xai-grok-4-fast",
@@ -1790,7 +1790,7 @@
       },
       "notes": "Débit très élevé idéal pour l’analyse en temps réel.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:18.171Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
     },
     {
       "id": "xai-grok-3",
@@ -1857,7 +1857,7 @@
       },
       "notes": "Génération précédente de xAI : plus coûteux et nettement en retrait face à Grok 4.7.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:18.171Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
     },
     {
       "id": "xai-grok-3-mini",
@@ -1924,7 +1924,7 @@
       },
       "notes": "Ancien modèle léger STEM de xAI avant Grok 4.1 Fast.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:18.171Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
     },
     {
       "id": "meta-llama-4-5-behemoth",
@@ -1991,7 +1991,7 @@
       },
       "notes": "Référence open-weight occidentale pour les déploiements sur site (on-premise).",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:18.171Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
     },
     {
       "id": "meta-llama-4-maverick",
@@ -2002,7 +2002,7 @@
       "generationLabel": "Llama 4.0",
       "tier": "open-weight",
       "positioning": "Gen N-1 MoE Multimodal • Polyvalent Open-Weight",
-      "releaseDate": "2025-04",
+      "releaseDate": "2025-04-05",
       "openWeight": true,
       "contextWindow": 524288,
       "maxOutputTokens": 32000,
@@ -2058,7 +2058,7 @@
       },
       "notes": "Première vague MoE Llama 4 : très économique mais distancé par Llama 4.5 sur le raisonnement.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "meta-llama-4-scout",
@@ -2069,7 +2069,7 @@
       "generationLabel": "Llama 4.0",
       "tier": "fast",
       "positioning": "Gen N-1 Contexte Extrême (10M) • Extraction Rapide",
-      "releaseDate": "2025-04",
+      "releaseDate": "2025-04-05",
       "openWeight": true,
       "contextWindow": 1310720,
       "maxOutputTokens": 16384,
@@ -2125,7 +2125,7 @@
       },
       "notes": "Fenêtre de contexte record (10M tokens) pour l’ingestion de corpus massifs à très bas coût.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "mistral-large-3-5",
@@ -2192,7 +2192,7 @@
       },
       "notes": "Excellente maîtrise du français et des langues européennes, conformité UE.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:18.171Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
     },
     {
       "id": "mistral-medium-3",
@@ -2203,7 +2203,7 @@
       "generationLabel": "Mistral 2/3",
       "tier": "balanced",
       "positioning": "Gen N-1 Entreprise • Ratio Coût/Qualité Européen",
-      "releaseDate": "2025-05",
+      "releaseDate": "2026-04-30",
       "openWeight": false,
       "contextWindow": 262144,
       "maxOutputTokens": 32000,
@@ -2259,7 +2259,7 @@
       },
       "notes": "Modèle entreprise de génération précédente très compétitif sur les tâches métier courantes.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "mistral-large-2411",
@@ -2270,7 +2270,7 @@
       "generationLabel": "Mistral 2/3",
       "tier": "open-weight",
       "positioning": "Gen N-1 Open-Weight 123B • Déploiement Privé",
-      "releaseDate": "2024-11",
+      "releaseDate": "2026-11-20",
       "openWeight": true,
       "contextWindow": 128000,
       "maxOutputTokens": 16384,
@@ -2326,7 +2326,7 @@
       },
       "notes": "Ancien flagship 123B de Mistral illustrant le bond de performance de Large 3.5.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "qwen-3-5-max-thinking",
@@ -2393,7 +2393,7 @@
       },
       "notes": "Très performant en mathématiques, code et raisonnement structuré à coût très contenu.",
       "priceSource": "seed",
-      "lastSyncedAt": "2026-11-25T05:04:18.171Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
     },
     {
       "id": "qwen-3-235b-a22b",
@@ -2404,7 +2404,7 @@
       "generationLabel": "Qwen 3.0",
       "tier": "open-weight",
       "positioning": "Gen N-1 MoE Flagship • Raisonnement Hybride",
-      "releaseDate": "2025-04",
+      "releaseDate": "2025-09-23",
       "openWeight": true,
       "contextWindow": 262144,
       "maxOutputTokens": 32000,
@@ -2460,7 +2460,7 @@
       },
       "notes": "Excellent MoE open-weight de la génération Qwen 3.0 à coût minimal.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
     },
     {
       "id": "qwen-3-32b",
@@ -2471,7 +2471,7 @@
       "generationLabel": "Qwen 3.0",
       "tier": "fast",
       "positioning": "Gen N-1 Dense 32B • Déploiement Local / Edge",
-      "releaseDate": "2025-04",
+      "releaseDate": "2025-04-28",
       "openWeight": true,
       "contextWindow": 131072,
       "maxOutputTokens": 32000,
@@ -2527,38 +2527,1428 @@
       },
       "notes": "Modèle dense compact de la génération Qwen 3.0 facile à héberger sur un seul GPU.",
       "priceSource": "openrouter-live",
-      "lastSyncedAt": "2026-11-25T05:04:38.382Z"
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z"
+    },
+    {
+      "id": "openai-gpt-6-5-horizon",
+      "name": "GPT-6.5 (Roadmap)",
+      "provider": "openai",
+      "generation": "upcoming",
+      "generationLabel": "À venir · 2027",
+      "tier": "flagship",
+      "positioning": "Futur Flagship • Autonomie Longue Durée (Cible Agent-2/3)",
+      "releaseDate": "2027-02-15",
+      "status": "upcoming",
+      "openWeight": false,
+      "contextWindow": 2000000,
+      "maxOutputTokens": 256000,
+      "inputPricePer1M": 10,
+      "outputPricePer1M": 50,
+      "avgCostPerTaskUsd": 2,
+      "speedTokPerSec": 85,
+      "latencyTtftMs": 1100,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Prochaine itération attendue début 2027 (date estimée, scores à moissonner dès publication).",
+      "priceSource": "seed",
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
+    },
+    {
+      "id": "google-gemini-4-5-ultra",
+      "name": "Gemini 4.5 Ultra (Roadmap)",
+      "provider": "google",
+      "generation": "upcoming",
+      "generationLabel": "À venir · 2027",
+      "tier": "flagship",
+      "positioning": "Futur Flagship • Raisonnement Multimodal & Agents",
+      "releaseDate": "2027-03-20",
+      "status": "upcoming",
+      "openWeight": false,
+      "contextWindow": 4000000,
+      "maxOutputTokens": 256000,
+      "inputPricePer1M": 3,
+      "outputPricePer1M": 15,
+      "avgCostPerTaskUsd": 0.8,
+      "speedTokPerSec": 95,
+      "latencyTtftMs": 850,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Évolution attendue de la gamme Gemini 4 au printemps 2027 (date estimée).",
+      "priceSource": "seed",
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
+    },
+    {
+      "id": "anthropic-claude-6-opus",
+      "name": "Claude 6 Opus (Roadmap)",
+      "provider": "anthropic",
+      "generation": "upcoming",
+      "generationLabel": "À venir · 2027",
+      "tier": "flagship",
+      "positioning": "Futur Flagship • Ingénierie Logicielle Autonome",
+      "releaseDate": "2027-04-10",
+      "status": "upcoming",
+      "openWeight": false,
+      "contextWindow": 2000000,
+      "maxOutputTokens": 256000,
+      "inputPricePer1M": 8,
+      "outputPricePer1M": 40,
+      "avgCostPerTaskUsd": 1.6,
+      "speedTokPerSec": 80,
+      "latencyTtftMs": 950,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Prochaine génération majeure Anthropic attendue en 2027 (date estimée).",
+      "priceSource": "seed",
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
+    },
+    {
+      "id": "deepseek-v5-frontier",
+      "name": "DeepSeek V5 (Roadmap)",
+      "provider": "deepseek",
+      "generation": "upcoming",
+      "generationLabel": "À venir · 2027",
+      "tier": "open-weight",
+      "positioning": "Futur Open-Weight • Raisonnement Agentique Bas Coût",
+      "releaseDate": "2027-03-01",
+      "status": "upcoming",
+      "openWeight": true,
+      "contextWindow": 1048576,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 0.6,
+      "outputPricePer1M": 2,
+      "avgCostPerTaskUsd": 0.12,
+      "speedTokPerSec": 130,
+      "latencyTtftMs": 450,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Prochaine génération open-weight DeepSeek attendue début 2027 (date estimée).",
+      "priceSource": "seed",
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
+    },
+    {
+      "id": "xai-grok-5",
+      "name": "Grok 5 (Roadmap)",
+      "provider": "xai",
+      "generation": "upcoming",
+      "generationLabel": "À venir · 2027",
+      "tier": "flagship",
+      "positioning": "Futur Flagship xAI • Supercluster Colossus Next-Gen",
+      "releaseDate": "2027-01-25",
+      "status": "upcoming",
+      "openWeight": false,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 3,
+      "outputPricePer1M": 12,
+      "avgCostPerTaskUsd": 0.5,
+      "speedTokPerSec": 140,
+      "latencyTtftMs": 420,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Prochaine génération Grok 5 attendue début 2027 (date estimée).",
+      "priceSource": "seed",
+      "lastSyncedAt": "2026-11-25T23:59:18.243Z"
+    },
+    {
+      "id": "or-openai-gpt-6-2-astra-pro",
+      "openRouterId": "openai/gpt-6.2-astra-pro",
+      "name": "GPT-6.2 Astra Pro",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-11",
+      "tier": "flagship",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-11-17",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 8,
+      "outputPricePer1M": 40,
+      "avgCostPerTaskUsd": 0.72,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6.2-astra-pro).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-2-sol-pro",
+      "openRouterId": "openai/gpt-6.2-sol-pro",
+      "name": "GPT-6.2 Sol Pro",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-11",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-11-17",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 2,
+      "outputPricePer1M": 10,
+      "avgCostPerTaskUsd": 0.18,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6.2-sol-pro).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-2-sol",
+      "openRouterId": "openai/gpt-6.2-sol",
+      "name": "GPT-6.2 Sol",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-11",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-11-17",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 2,
+      "outputPricePer1M": 10,
+      "avgCostPerTaskUsd": 0.18,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6.2-sol).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-qwen-qwen4-max",
+      "openRouterId": "qwen/qwen4-max",
+      "name": "Qwen4 Max",
+      "provider": "qwen",
+      "generation": "current",
+      "generationLabel": "Publié 2026-11",
+      "tier": "open-weight",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-11-16",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": true,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 131072,
+      "inputPricePer1M": 1.425,
+      "outputPricePer1M": 4.275,
+      "avgCostPerTaskUsd": 0.1,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (qwen/qwen4-max).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-google-gemini-omni-1-2-flash",
+      "openRouterId": "google/gemini-omni-1.2-flash",
+      "name": "Gemini Omni 1.2 Flash",
+      "provider": "google",
+      "generation": "current",
+      "generationLabel": "Publié 2026-11",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-11-05",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 131072,
+      "maxOutputTokens": 65536,
+      "inputPricePer1M": 1.5,
+      "outputPricePer1M": 9,
+      "avgCostPerTaskUsd": 0.15,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (google/gemini-omni-1.2-flash).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-google-gemini-omni-1-1-flash",
+      "openRouterId": "google/gemini-omni-1.1-flash",
+      "name": "Gemini Omni 1.1 Flash",
+      "provider": "google",
+      "generation": "current",
+      "generationLabel": "Publié 2026-11",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-11-04",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 131072,
+      "maxOutputTokens": 65536,
+      "inputPricePer1M": 1.5,
+      "outputPricePer1M": 9,
+      "avgCostPerTaskUsd": 0.15,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (google/gemini-omni-1.1-flash).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-1-terra-pro",
+      "openRouterId": "openai/gpt-6.1-terra-pro",
+      "name": "GPT-6.1 Terra Pro",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-10",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-10-26",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 1,
+      "outputPricePer1M": 5,
+      "avgCostPerTaskUsd": 0.09,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6.1-terra-pro).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-1-terra",
+      "openRouterId": "openai/gpt-6.1-terra",
+      "name": "GPT-6.1 Terra",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-10",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-10-26",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 1,
+      "outputPricePer1M": 5,
+      "avgCostPerTaskUsd": 0.09,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6.1-terra).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-deepseek-deepseek-v4-1-flash-1017",
+      "openRouterId": "deepseek/deepseek-v4.1-flash-1017",
+      "name": "DeepSeek V4.1 Flash 1017",
+      "provider": "deepseek",
+      "generation": "current",
+      "generationLabel": "Publié 2026-10",
+      "tier": "open-weight",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-10-17",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": true,
+      "contextWindow": 1048576,
+      "maxOutputTokens": 393216,
+      "inputPricePer1M": 0.15,
+      "outputPricePer1M": 0.6,
+      "avgCostPerTaskUsd": 0.012,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (deepseek/deepseek-v4.1-flash-1017).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-google-gemini-4-argon",
+      "openRouterId": "google/gemini-4-argon",
+      "name": "Gemini 4 Argon",
+      "provider": "google",
+      "generation": "current",
+      "generationLabel": "Publié 2026-10",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-10-13",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1048576,
+      "maxOutputTokens": 943718,
+      "inputPricePer1M": 2,
+      "outputPricePer1M": 10,
+      "avgCostPerTaskUsd": 0.18,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (google/gemini-4-argon).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-mistralai-mistral-large-4-0",
+      "openRouterId": "mistralai/mistral-large-4-0",
+      "name": "Mistral Large 4",
+      "provider": "mistral",
+      "generation": "current",
+      "generationLabel": "Publié 2026-10",
+      "tier": "open-weight",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-10-06",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": true,
+      "contextWindow": 1048576,
+      "maxOutputTokens": 262144,
+      "inputPricePer1M": 0.7,
+      "outputPricePer1M": 2.1,
+      "avgCostPerTaskUsd": 0.049,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (mistralai/mistral-large-4-0).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-1-sol-pro",
+      "openRouterId": "openai/gpt-6.1-sol-pro",
+      "name": "GPT-6.1 Sol Pro",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-29",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 2,
+      "outputPricePer1M": 10,
+      "avgCostPerTaskUsd": 0.18,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6.1-sol-pro).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-1-sol",
+      "openRouterId": "openai/gpt-6.1-sol",
+      "name": "GPT-6.1 Sol",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-29",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 2,
+      "outputPricePer1M": 10,
+      "avgCostPerTaskUsd": 0.18,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6.1-sol).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-qwen-qwen3-8-max-prime",
+      "openRouterId": "qwen/qwen3.8-max-prime",
+      "name": "Qwen3.8 Max Prime",
+      "provider": "qwen",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "open-weight",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-23",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": true,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 131072,
+      "inputPricePer1M": 4,
+      "outputPricePer1M": 12,
+      "avgCostPerTaskUsd": 0.28,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (qwen/qwen3.8-max-prime).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-luna-pro",
+      "openRouterId": "openai/gpt-6-luna-pro",
+      "name": "GPT-6 Luna Pro",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "fast",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-22",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 0.1,
+      "outputPricePer1M": 0.5,
+      "avgCostPerTaskUsd": 0.01,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6-luna-pro).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-sol-pro",
+      "openRouterId": "openai/gpt-6-sol-pro",
+      "name": "GPT-6 Sol Pro",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "balanced",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-22",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 2,
+      "outputPricePer1M": 10,
+      "avgCostPerTaskUsd": 0.18,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6-sol-pro).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-anthropic-claude-opus-5-5",
+      "openRouterId": "anthropic/claude-opus-5.5",
+      "name": "Claude Opus 5.5",
+      "provider": "anthropic",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "flagship",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-22",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 4,
+      "outputPricePer1M": 20,
+      "avgCostPerTaskUsd": 0.36,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (anthropic/claude-opus-5.5).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-qwen-qwen3-8-omni-flash",
+      "openRouterId": "qwen/qwen3.8-omni-flash",
+      "name": "Qwen3.8 Omni Flash",
+      "provider": "qwen",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "open-weight",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-21",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": true,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 131072,
+      "inputPricePer1M": 0.15,
+      "outputPricePer1M": 0.47,
+      "avgCostPerTaskUsd": 0.011,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (qwen/qwen3.8-omni-flash).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-astra",
+      "openRouterId": "openai/gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "flagship",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-04",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 10,
+      "outputPricePer1M": 50,
+      "avgCostPerTaskUsd": 0.9,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6-astra).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
+    },
+    {
+      "id": "or-openai-gpt-6-astra-pro",
+      "openRouterId": "openai/gpt-6-astra-pro",
+      "name": "GPT-6 Astra Pro",
+      "provider": "openai",
+      "generation": "current",
+      "generationLabel": "Publié 2026-09",
+      "tier": "flagship",
+      "positioning": "Nouveau modèle découvert via OpenRouter Live",
+      "releaseDate": "2026-09-04",
+      "status": "released",
+      "discoveredByHarvester": true,
+      "openWeight": false,
+      "contextWindow": 1050000,
+      "maxOutputTokens": 128000,
+      "inputPricePer1M": 10,
+      "outputPricePer1M": 50,
+      "avgCostPerTaskUsd": 0.9,
+      "speedTokPerSec": 110,
+      "latencyTtftMs": 500,
+      "benchmarks": {
+        "arc_agi_1": {
+          "score": null
+        },
+        "arc_agi_2": {
+          "score": null
+        },
+        "arc_agi_3": {
+          "score": null
+        },
+        "swe_bench": {
+          "score": null
+        },
+        "gpqa_diamond": {
+          "score": null
+        },
+        "hle": {
+          "score": null
+        },
+        "frontier_math": {
+          "score": null
+        },
+        "terminal_bench": {
+          "score": null
+        },
+        "live_bench": {
+          "score": null
+        },
+        "lmarena_elo": {
+          "score": null
+        }
+      },
+      "notes": "Découvert automatiquement lors du moissonnage OpenRouter (openai/gpt-6-astra-pro).",
+      "lastSyncedAt": "2026-11-25T23:59:18.452Z",
+      "priceSource": "openrouter-live"
     }
   ],
   "harvestHistory": [
     {
-      "id": "harvest-1795583078615",
-      "timestamp": "2026-11-25T05:04:38.615Z",
+      "id": "harvest-1795651158757",
+      "timestamp": "2026-11-25T23:59:18.757Z",
       "trigger": "cli",
-      "durationMs": 429,
+      "durationMs": 518,
       "sources": [
         {
-          "source": "OpenRouter Live Catalog (Prix & Contexte)",
+          "source": "OpenRouter Live Catalog (Prix, Contexte & Nouveaux Modèles)",
           "url": "https://openrouter.ai/api/v1/models",
           "status": "ok",
           "modelsMatched": 28,
-          "fieldsUpdated": 23,
-          "newModelsDiscovered": 472,
-          "durationMs": 202,
-          "message": "472 modèles scannés en direct, 28 appariés, 23 champ(s) mis à jour."
+          "fieldsUpdated": 47,
+          "newModelsDiscovered": 20,
+          "durationMs": 213,
+          "message": "474 modèles scannés, 28 appariés, 20 nouveau(x) modèle(s) importé(s), 47 MAJ."
         },
         {
           "source": "ARC Prize Leaderboard (ARC-AGI 1 / 2 / 3)",
           "url": "https://arcprize.org/media/data/leaderboard/evaluations.json",
           "status": "fallback",
-          "modelsMatched": 34,
+          "modelsMatched": 59,
           "fieldsUpdated": 0,
           "newModelsDiscovered": 0,
-          "durationMs": 375,
+          "durationMs": 456,
           "message": "Flux JSON distant non disponible ou format protégé ; scores ARC-AGI vérifiés locaux conservés."
         }
       ],
-      "totalUpdatedFields": 23,
+      "totalUpdatedFields": 47,
       "changes": [
         {
           "modelId": "openai-gpt-5-4-pro",
@@ -2598,6 +3988,38 @@
           "field": "outputPricePer1M",
           "oldValue": 0.9,
           "newValue": 7.5,
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "deepseek-v4-pro",
+          "modelName": "DeepSeek V4 Pro",
+          "field": "inputPricePer1M",
+          "oldValue": 1.28,
+          "newValue": 0.8882,
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "deepseek-v4-pro",
+          "modelName": "DeepSeek V4 Pro",
+          "field": "outputPricePer1M",
+          "oldValue": 2.56,
+          "newValue": 1.5463,
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "deepseek-v4-1-flash",
+          "modelName": "DeepSeek V4.1 Flash",
+          "field": "inputPricePer1M",
+          "oldValue": 0.14,
+          "newValue": 0.051,
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "deepseek-v4-1-flash",
+          "modelName": "DeepSeek V4.1 Flash",
+          "field": "outputPricePer1M",
+          "oldValue": 0.42,
+          "newValue": 0.567,
           "source": "OpenRouter"
         },
         {
@@ -2743,12 +4165,172 @@
           "oldValue": 0.3,
           "newValue": 0.28,
           "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-2-astra-pro",
+          "modelName": "GPT-6.2 Astra Pro",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-11-17 ($8/$40)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-2-sol-pro",
+          "modelName": "GPT-6.2 Sol Pro",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-11-17 ($2/$10)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-2-sol",
+          "modelName": "GPT-6.2 Sol",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-11-17 ($2/$10)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-qwen-qwen4-max",
+          "modelName": "Qwen4 Max",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-11-16 ($1.425/$4.275)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-google-gemini-omni-1-2-flash",
+          "modelName": "Gemini Omni 1.2 Flash",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-11-05 ($1.5/$9)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-google-gemini-omni-1-1-flash",
+          "modelName": "Gemini Omni 1.1 Flash",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-11-04 ($1.5/$9)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-1-terra-pro",
+          "modelName": "GPT-6.1 Terra Pro",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-10-26 ($1/$5)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-1-terra",
+          "modelName": "GPT-6.1 Terra",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-10-26 ($1/$5)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-deepseek-deepseek-v4-1-flash-1017",
+          "modelName": "DeepSeek V4.1 Flash 1017",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-10-17 ($0.15/$0.6)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-google-gemini-4-argon",
+          "modelName": "Gemini 4 Argon",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-10-13 ($2/$10)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-mistralai-mistral-large-4-0",
+          "modelName": "Mistral Large 4",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-10-06 ($0.7/$2.1)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-1-sol-pro",
+          "modelName": "GPT-6.1 Sol Pro",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-29 ($2/$10)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-1-sol",
+          "modelName": "GPT-6.1 Sol",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-29 ($2/$10)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-qwen-qwen3-8-max-prime",
+          "modelName": "Qwen3.8 Max Prime",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-23 ($4/$12)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-luna-pro",
+          "modelName": "GPT-6 Luna Pro",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-22 ($0.1/$0.5)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-sol-pro",
+          "modelName": "GPT-6 Sol Pro",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-22 ($2/$10)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-anthropic-claude-opus-5-5",
+          "modelName": "Claude Opus 5.5",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-22 ($4/$20)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-qwen-qwen3-8-omni-flash",
+          "modelName": "Qwen3.8 Omni Flash",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-21 ($0.15/$0.47)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-astra",
+          "modelName": "GPT-6 Astra",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-04 ($10/$50)",
+          "source": "OpenRouter"
+        },
+        {
+          "modelId": "or-openai-gpt-6-astra-pro",
+          "modelName": "GPT-6 Astra Pro",
+          "field": "nouveau_modele",
+          "oldValue": null,
+          "newValue": "2026-09-04 ($10/$50)",
+          "source": "OpenRouter"
         }
       ]
     },
     {
       "id": "seed-init",
-      "timestamp": "2026-11-25T05:04:18.171Z",
+      "timestamp": "2026-11-25T23:59:18.243Z",
       "trigger": "startup",
       "durationMs": 0,
       "sources": [
@@ -2756,11 +4338,11 @@
           "source": "Baseline 2 Générations (N & N-1)",
           "url": "local://seed",
           "status": "ok",
-          "modelsMatched": 34,
+          "modelsMatched": 39,
           "fieldsUpdated": 0,
           "newModelsDiscovered": 0,
           "durationMs": 0,
-          "message": "Jeu de données chargé (34 modèles sur 2 générations, 10 benchmarks)."
+          "message": "Jeu de données chargé (39 modèles sur 2 générations, 10 benchmarks)."
         }
       ],
       "totalUpdatedFields": 0,

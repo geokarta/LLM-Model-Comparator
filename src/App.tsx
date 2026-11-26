@@ -11,6 +11,7 @@ import { BenchmarkCodex } from './components/BenchmarkCodex.tsx';
 import { HarvesterConsole } from './components/HarvesterConsole.tsx';
 import { AI2027View } from './components/AI2027View.tsx';
 import { CostSimulatorPage } from './components/CostSimulatorPage.tsx';
+import { TimelinePage } from './components/TimelinePage.tsx';
 import { NeuralOrb } from './components/NeuralOrb.tsx';
 import { emitOrbSignal } from './utils/orbBus.ts';
 
@@ -19,6 +20,7 @@ type ComparisonScope = 'cross-provider' | 'intra-provider';
 function getInitialTabFromPath(): ActiveTab {
   if (typeof window === 'undefined') return 'comparator';
   const p = window.location.pathname.toLowerCase();
+  if (p.includes('timeline')) return 'timeline';
   if (p.includes('simulator') || p.includes('simulateur')) return 'simulator';
   if (p.includes('ai2027')) return 'ai2027';
   if (p.includes('codex')) return 'codex';
@@ -186,6 +188,7 @@ export default function App() {
   const scopedModels = useMemo(() => {
     if (!dataset) return [];
     return dataset.models.filter((m) => {
+      if (m.status === 'upcoming') return false;
       if (scope === 'intra-provider' && m.provider !== selectedProvider) return false;
       if (generationFilter !== 'all' && m.generation !== generationFilter) return false;
       return true;
@@ -492,16 +495,26 @@ export default function App() {
               </div>
             )}
 
+            {activeTab === 'timeline' && (
+              <TimelinePage
+                models={dataset.models}
+                providers={dataset.providers}
+                benchmarks={dataset.benchmarks}
+                isHarvesting={isHarvesting}
+                onTriggerHarvest={handleHarvest}
+              />
+            )}
+
             {activeTab === 'simulator' && (
               <CostSimulatorPage
-                models={dataset.models}
+                models={dataset.models.filter((m) => m.status !== 'upcoming')}
                 providers={dataset.providers}
               />
             )}
 
             {activeTab === 'ai2027' && (
               <AI2027View
-                models={dataset.models}
+                models={dataset.models.filter((m) => m.status !== 'upcoming')}
                 providers={dataset.providers}
                 pinnedIds={pinnedIds}
               />

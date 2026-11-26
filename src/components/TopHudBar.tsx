@@ -1,6 +1,6 @@
-import { BarChart3, BookOpen, Calculator, Cpu, Database, RefreshCw, TrendingUp } from 'lucide-react';
+import { BarChart3, BookOpen, Calculator, Calendar, Cpu, Database, RefreshCw, TrendingUp } from 'lucide-react';
 
-export type ActiveTab = 'comparator' | 'simulator' | 'ai2027' | 'codex' | 'harvester';
+export type ActiveTab = 'comparator' | 'timeline' | 'simulator' | 'ai2027' | 'codex' | 'harvester';
 
 interface TopHudBarProps {
   activeTab: ActiveTab;
@@ -56,6 +56,13 @@ export function TopHudBar({
           >
             <BarChart3 size={15} className="me-1" />
             Comparateur
+          </button>
+          <button
+            className={`btn btn-sm ${activeTab === 'timeline' ? 'btn-primary' : 'btn-ghost-secondary'}`}
+            onClick={() => onTabChange('timeline')}
+          >
+            <Calendar size={15} className="me-1" />
+            Timeline
           </button>
           <button
             className={`btn btn-sm ${activeTab === 'simulator' ? 'btn-primary' : 'btn-ghost-secondary'}`}

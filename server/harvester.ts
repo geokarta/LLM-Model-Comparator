@@ -5,6 +5,7 @@ import {
   HarvestRecord,
   HarvestSourceResult,
   LLMModel,
+  ProviderId,
   TelemetryDataset,
 } from '../shared/types.ts';
 import { createSeedDataset, DATASET_VERSION } from './seedData.ts';
@@ -40,6 +41,7 @@ export async function saveDataset(dataset: TelemetryDataset): Promise<void> {
 interface OpenRouterModel {
   id: string;
   name?: string;
+  created?: number; // Unix timestamp in seconds (publication date!)
   context_length?: number;
   top_provider?: {
     max_completion_tokens?: number | null;
@@ -48,6 +50,57 @@ interface OpenRouterModel {
     prompt?: string;
     completion?: string;
   };
+}
+
+const PROVIDER_PREFIXES: Record<ProviderId, string> = {
+  openai: 'openai/',
+  anthropic: 'anthropic/',
+  google: 'google/',
+  deepseek: 'deepseek/',
+  xai: 'x-ai/',
+  meta: 'meta-llama/',
+  mistral: 'mistralai/',
+  qwen: 'qwen/',
+};
+
+function detectProviderFromOpenRouterId(id: string): ProviderId | null {
+  const lower = id.toLowerCase();
+  for (const [prov, prefix] of Object.entries(PROVIDER_PREFIXES)) {
+    if (lower.startsWith(prefix)) return prov as ProviderId;
+  }
+  return null;
+}
+
+function unixToIsoDate(sec?: number): string | null {
+  if (!sec || !Number.isFinite(sec) || sec < 1600000000) return null;
+  return new Date(sec * 1000).toISOString().slice(0, 10);
+}
+
+function shouldAutoImportOpenRouterModel(m: OpenRouterModel): boolean {
+  const lower = m.id.toLowerCase();
+  if (lower.includes(':')) return false; // skip :free, :extended, :nitro, :online variants
+  const skipWords = [
+    'embed',
+    'whisper',
+    'tts',
+    'dall-e',
+    'imagen',
+    'audio',
+    'moderation',
+    'guard',
+    'safeguard',
+    'vision-preview',
+    'instruct-v0',
+    'beta',
+    'nano',
+    'realtime',
+  ];
+  if (skipWords.some((w) => lower.includes(w))) return false;
+  if (!m.created || m.created < 1767225600) return false; // published >= 2026-01-01
+  const pIn = parseFloat(m.pricing?.prompt ?? '0');
+  const pOut = parseFloat(m.pricing?.completion ?? '0');
+  if (Number.isNaN(pIn) || Number.isNaN(pOut) || (pIn === 0 && pOut === 0)) return false;
+  return true;
 }
 
 function normalizeKey(str: string): string {
@@ -138,13 +191,22 @@ async function harvestOpenRouter(
     const catalog = payload.data ?? [];
     let matched = 0;
     let updated = 0;
+    let discoveredCount = 0;
     const now = new Date().toISOString();
+    const matchedOpenRouterIds = new Set<string>();
 
     for (const model of dataset.models) {
+      if (model.status === 'upcoming') continue;
       const live = findMatchingOpenRouterModel(model, catalog);
       if (!live) continue;
       matched++;
+      matchedOpenRouterIds.add(live.id.toLowerCase());
       model.lastSyncedAt = now;
+
+      const exactDate = unixToIsoDate(live.created);
+      if (exactDate && model.releaseDate.length <= 7) {
+        model.releaseDate = exactDate;
+      }
 
       if (live.pricing?.prompt && live.pricing?.completion) {
         const liveIn = Number((parseFloat(live.pricing.prompt) * 1_000_000).toFixed(4));
@@ -197,15 +259,94 @@ async function harvestOpenRouter(
       }
     }
 
+    // Auto-discover newly published models from our 8 tracked providers (sorted newest first, cap 20)
+    const candidates = catalog
+      .filter((c) => {
+        const prov = detectProviderFromOpenRouterId(c.id);
+        if (!prov) return false;
+        if (matchedOpenRouterIds.has(c.id.toLowerCase())) return false;
+        const alreadyExists = dataset.models.some(
+          (m) =>
+            m.openRouterId?.toLowerCase() === c.id.toLowerCase() ||
+            normalizeKey(m.name) === normalizeKey(c.name ?? '')
+        );
+        if (alreadyExists) return false;
+        return shouldAutoImportOpenRouterModel(c);
+      })
+      .sort((a, b) => (b.created ?? 0) - (a.created ?? 0))
+      .slice(0, 20);
+
+    for (const c of candidates) {
+      const prov = detectProviderFromOpenRouterId(c.id)!;
+      const cleanName = (c.name ?? c.id.split('/')[1] ?? c.id)
+        .replace(/^[A-Za-z0-9\s]+:\s*/, '')
+        .trim();
+      const inPrice = Number((parseFloat(c.pricing?.prompt ?? '0') * 1_000_000).toFixed(4));
+      const outPrice = Number((parseFloat(c.pricing?.completion ?? '0') * 1_000_000).toFixed(4));
+      const releaseDate = unixToIsoDate(c.created) ?? now.slice(0, 10);
+      const isOpenWeight = ['deepseek', 'meta', 'qwen', 'mistral'].includes(prov);
+      const estTaskCost = Number(Math.max(0.01, (inPrice * 0.04 + outPrice * 0.01)).toFixed(3));
+      const slugId = `or-${c.id.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+      const newModel: LLMModel = {
+        id: slugId,
+        openRouterId: c.id,
+        name: cleanName,
+        provider: prov,
+        generation: 'current',
+        generationLabel: `Publié ${releaseDate.slice(0, 7)}`,
+        tier: isOpenWeight ? 'open-weight' : inPrice >= 4 ? 'flagship' : inPrice <= 0.5 ? 'fast' : 'balanced',
+        positioning: 'Nouveau modèle découvert via OpenRouter Live',
+        releaseDate,
+        status: 'released',
+        discoveredByHarvester: true,
+        openWeight: isOpenWeight,
+        contextWindow: c.context_length ?? 128000,
+        maxOutputTokens: c.top_provider?.max_completion_tokens ?? 32000,
+        inputPricePer1M: inPrice,
+        outputPricePer1M: outPrice,
+        avgCostPerTaskUsd: estTaskCost,
+        speedTokPerSec: 110,
+        latencyTtftMs: 500,
+        benchmarks: {
+          arc_agi_1: { score: null },
+          arc_agi_2: { score: null },
+          arc_agi_3: { score: null },
+          swe_bench: { score: null },
+          gpqa_diamond: { score: null },
+          hle: { score: null },
+          frontier_math: { score: null },
+          terminal_bench: { score: null },
+          live_bench: { score: null },
+          lmarena_elo: { score: null },
+        },
+        notes: `Découvert automatiquement lors du moissonnage OpenRouter (${c.id}).`,
+        lastSyncedAt: now,
+        priceSource: 'openrouter-live',
+      };
+
+      dataset.models.push(newModel);
+      discoveredCount++;
+      updated++;
+      changes.push({
+        modelId: newModel.id,
+        modelName: newModel.name,
+        field: 'nouveau_modele',
+        oldValue: null,
+        newValue: `${releaseDate} ($${inPrice}/$${outPrice})`,
+        source: 'OpenRouter',
+      });
+    }
+
     return {
-      source: 'OpenRouter Live Catalog (Prix & Contexte)',
+      source: 'OpenRouter Live Catalog (Prix, Contexte & Nouveaux Modèles)',
       url,
       status: 'ok',
       modelsMatched: matched,
       fieldsUpdated: updated,
-      newModelsDiscovered: catalog.length,
+      newModelsDiscovered: discoveredCount,
       durationMs: Date.now() - started,
-      message: `${catalog.length} modèles scannés en direct, ${matched} appariés, ${updated} champ(s) mis à jour.`,
+      message: `${catalog.length} modèles scannés, ${matched} appariés, ${discoveredCount} nouveau(x) modèle(s) importé(s), ${updated} MAJ.`,
     };
   } catch (err) {
     return {

@@ -58,7 +58,7 @@ export interface BenchmarkScore {
   updatedAt?: string;
 }
 
-export type ModelGeneration = 'current' | 'previous';
+export type ModelGeneration = 'current' | 'previous' | 'upcoming';
 
 export interface LLMModel {
   id: string;
@@ -69,7 +69,9 @@ export interface LLMModel {
   generationLabel: string; // e.g. "GPT-6", "GPT-5", "Gemini 4", "Gemini 3"
   tier: ModelTier;
   positioning: string;
-  releaseDate: string; // YYYY-MM
+  releaseDate: string; // YYYY-MM-DD or YYYY-MM
+  status?: 'released' | 'upcoming';
+  discoveredByHarvester?: boolean;
   openWeight: boolean;
   contextWindow: number; // tokens
   maxOutputTokens: number;

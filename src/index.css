@@ -102,3 +102,92 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.45);
 }
+
+/* Pro Dark Tabler Styling for vis-timeline */
+.vis-timeline {
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  border-radius: 8px;
+  background-color: #131c29 !important;
+  font-family: var(--tblr-font-sans-serif) !important;
+}
+
+.vis-panel.vis-left,
+.vis-panel.vis-top,
+.vis-panel.vis-bottom {
+  background-color: #182232 !important;
+  border-color: rgba(148, 163, 184, 0.16) !important;
+}
+
+.vis-labelset .vis-label {
+  color: #e2e8f0 !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12) !important;
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.vis-foreground .vis-group {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1) !important;
+}
+
+.vis-time-axis .vis-text {
+  color: #94a3b8 !important;
+  font-family: var(--tblr-font-monospace) !important;
+  font-size: 0.72rem !important;
+}
+
+.vis-time-axis .vis-grid.vis-minor {
+  border-color: rgba(148, 163, 184, 0.06) !important;
+}
+
+.vis-time-axis .vis-grid.vis-major {
+  border-color: rgba(148, 163, 184, 0.14) !important;
+}
+
+.vis-current-time {
+  background-color: #10b981 !important;
+  width: 2px !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+}
+
+.vis-item {
+  background-color: #1e2c40 !important;
+  border: 1px solid rgba(148, 163, 184, 0.25) !important;
+  border-radius: 6px !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.vis-item:hover {
+  z-index: 20 !important;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+}
+
+.vis-item.vis-selected {
+  background-color: #253650 !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.45) !important;
+}
+
+.vis-item.timeline-item-upcoming {
+  background-color: rgba(30, 44, 64, 0.6) !important;
+  border-style: dashed !important;
+  border-color: rgba(245, 158, 11, 0.6) !important;
+}
+
+.vis-item.timeline-item-harvested {
+  border-color: rgba(16, 185, 129, 0.65) !important;
+}
+
+.vis-item .vis-item-content {
+  padding: 4px 8px !important;
+}
+
+.vis-item.vis-dot {
+  border-color: #3b82f6 !important;
+}
+
+.vis-item.vis-line {
+  border-color: rgba(148, 163, 184, 0.3) !important;
+}
+
