@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Building2, DollarSign, Gauge, Globe2, Trophy, Zap } from 'lucide-react';
+import { Building2, DollarSign, Gauge, Globe2, Lock, Trophy, Zap } from 'lucide-react';
 import { BenchmarkId, LLMModel, ModelGeneration, ProviderId, TelemetryDataset } from '../shared/types.ts';
 import { computeEfficiencyScore, computePowerIndex, formatUsd } from '../shared/metrics.ts';
-import { ActiveTab, TopHudBar } from './components/TopHudBar.tsx';
+import { ActiveTab, AuthUser, TopHudBar } from './components/TopHudBar.tsx';
 import { ParetoChart } from './components/ParetoChart.tsx';
 import { RadarComparator } from './components/RadarComparator.tsx';
 import { TaskCostSimulator } from './components/TaskCostSimulator.tsx';
@@ -12,8 +12,11 @@ import { HarvesterConsole } from './components/HarvesterConsole.tsx';
 import { AI2027View } from './components/AI2027View.tsx';
 import { CostSimulatorPage } from './components/CostSimulatorPage.tsx';
 import { TimelinePage } from './components/TimelinePage.tsx';
+import { AdminDashboard } from './components/AdminDashboard.tsx';
+import { LoginModal } from './components/LoginModal.tsx';
 import { NeuralOrb } from './components/NeuralOrb.tsx';
 import { emitOrbSignal } from './utils/orbBus.ts';
+import { useI18n } from './i18n/I18nContext.tsx';
 
 type ComparisonScope = 'cross-provider' | 'intra-provider';
 
@@ -25,13 +28,19 @@ function getInitialTabFromPath(): ActiveTab {
   if (p.includes('ai2027')) return 'ai2027';
   if (p.includes('codex')) return 'codex';
   if (p.includes('harvester')) return 'harvester';
+  if (p.includes('admin')) return 'admin';
   return 'comparator';
 }
 
 export default function App() {
+  const { lang, t } = useI18n();
   const [dataset, setDataset] = useState<TelemetryDataset | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [googleClientId, setGoogleClientId] = useState<string | null>(null);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   const [activeTab, setActiveTab] = useState<ActiveTab>(getInitialTabFromPath);
   const [scope, setScope] = useState<ComparisonScope>('cross-provider');
@@ -55,10 +64,21 @@ export default function App() {
   const fetchTelemetry = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/telemetry');
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = (await res.json()) as TelemetryDataset;
+      const [telRes, authRes] = await Promise.all([
+        fetch('/api/telemetry'),
+        fetch('/api/auth/me'),
+      ]);
+      if (!telRes.ok) throw new Error(`HTTP ${telRes.status}`);
+      const data = (await telRes.json()) as TelemetryDataset;
       setDataset(data);
+      if (authRes.ok) {
+        const authData = (await authRes.json()) as {
+          user: AuthUser | null;
+          config?: { googleClientId?: string | null };
+        };
+        setUser(authData.user);
+        setGoogleClientId(authData.config?.googleClientId ?? null);
+      }
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Impossible de joindre le serveur API');
@@ -71,16 +91,44 @@ export default function App() {
     fetchTelemetry();
   }, [fetchTelemetry]);
 
+  // Lightweight first-party usage monitoring (Task 6)
+  useEffect(() => {
+    fetch('/api/analytics/pageview', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page: activeTab, lang }),
+    }).catch(() => {});
+  }, [activeTab, lang]);
+
+  const handleLogout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    setUser(null);
+    if (activeTab === 'harvester' || activeTab === 'admin') {
+      setActiveTab('comparator');
+      window.history.pushState({}, '', '/');
+    }
+    showToast('Déconnecté.');
+  };
+
   const handleHarvest = async () => {
+    if (!user?.isAdmin) {
+      setLoginOpen(true);
+      showToast(t('loginRequiredHarvest'));
+      return;
+    }
     setIsHarvesting(true);
     emitOrbSignal({
       type: 'harvest-start',
       color: '#10b981',
       intensity: 1.8,
-      label: 'Synchronisation...',
+      label: t('harvestingBtn'),
     });
     try {
       const res = await fetch('/api/harvest', { method: 'POST' });
+      if (res.status === 401) {
+        setLoginOpen(true);
+        throw new Error(t('loginRequiredHarvest'));
+      }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = (await res.json()) as {
         dataset: TelemetryDataset;
@@ -94,10 +142,10 @@ export default function App() {
         label: `+${data.record.totalUpdatedFields} MAJ`,
       });
       showToast(
-        `Moissonnage terminé en ${data.record.durationMs}ms — ${data.record.totalUpdatedFields} valeur(s) actualisée(s).`
+        `Moissonnage terminé en ${data.record.durationMs}ms — ${data.record.totalUpdatedFields} valeur(s) sauvegardée(s).`
       );
     } catch (err) {
-      emitOrbSignal({ type: 'harvest-done', color: '#ef4444', intensity: 1.3, label: 'Erreur sync' });
+      emitOrbSignal({ type: 'harvest-done', color: '#ef4444', intensity: 1.3, label: 'Erreur' });
       showToast(`Erreur moissonnage : ${err instanceof Error ? err.message : 'réseau'}`);
     } finally {
       setIsHarvesting(false);
@@ -109,7 +157,7 @@ export default function App() {
     if (res.ok) {
       const data = (await res.json()) as { dataset: TelemetryDataset };
       setDataset(data.dataset);
-      showToast('Base réinitialisée sur les valeurs de référence 2026.');
+      showToast('Base réinitialisée sur les valeurs de référence.');
     }
   };
 
@@ -140,7 +188,7 @@ export default function App() {
       const targetProv = prov ?? selectedProvider;
       const provMeta = dataset.providers.find((p) => p.id === targetProv);
       const sameProvIds = dataset.models
-        .filter((m) => m.provider === targetProv)
+        .filter((m) => m.provider === targetProv && m.status !== 'upcoming')
         .map((m) => m.id)
         .slice(0, 5);
       setPinnedIds(sameProvIds);
@@ -161,7 +209,7 @@ export default function App() {
         type: 'scope',
         color: '#3b82f6',
         intensity: 1.2,
-        label: 'Multi-fournisseurs',
+        label: t('multiProviders'),
       });
     }
   };
@@ -225,7 +273,7 @@ export default function App() {
       <div className="page page-center">
         <div className="container container-slim py-4 text-center">
           <div className="spinner-border text-primary mb-3" role="status" />
-          <div className="text-secondary">Chargement des benchmarks LLM...</div>
+          <div className="text-secondary">{t('loadingApp')}</div>
         </div>
       </div>
     );
@@ -237,10 +285,10 @@ export default function App() {
         <div className="container-tight py-4">
           <div className="card">
             <div className="card-body text-center">
-              <h3 className="text-danger">Erreur de connexion API</h3>
+              <h3 className="text-danger">{t('errorApiTitle')}</h3>
               <p className="text-secondary">{error ?? 'Données indisponibles.'}</p>
               <button className="btn btn-primary" onClick={fetchTelemetry}>
-                Réessayer
+                {t('retryBtn')}
               </button>
             </div>
           </div>
@@ -274,16 +322,7 @@ export default function App() {
                       ? '#06b6d4'
                       : '#3b82f6',
             intensity: 1.0,
-            label:
-              tab === 'comparator'
-                ? 'Comparateur'
-                : tab === 'simulator'
-                  ? 'Simulateur Coût'
-                  : tab === 'ai2027'
-                    ? 'Courbe AI 2027'
-                    : tab === 'codex'
-                      ? 'Codex'
-                      : 'Moissonneur',
+            label: tab,
           });
         }}
         lastHarvestAt={dataset.lastHarvestAt}
@@ -292,6 +331,9 @@ export default function App() {
         isHarvesting={isHarvesting}
         onTriggerHarvest={handleHarvest}
         lastDeltaCount={dataset.harvestHistory[0]?.totalUpdatedFields ?? 0}
+        user={user}
+        onOpenLogin={() => setLoginOpen(true)}
+        onLogout={handleLogout}
       />
 
       <div className="page-wrapper">
@@ -307,7 +349,7 @@ export default function App() {
               <div className="d-flex flex-column gap-3">
                 {/* Scope Switcher */}
                 <div className="card">
-                  <div className="card-body py-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+                  <div className="card-body py-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
                     <div className="d-flex flex-wrap align-items-center gap-2">
                       <div className="btn-group" role="group">
                         <button
@@ -315,14 +357,14 @@ export default function App() {
                           onClick={() => handleScopeChange('cross-provider')}
                         >
                           <Globe2 size={14} className="me-1" />
-                          Multi-fournisseurs
+                          {t('multiProviders')}
                         </button>
                         <button
                           className={`btn btn-sm ${scope === 'intra-provider' ? 'btn-primary' : 'btn-outline-secondary'}`}
                           onClick={() => handleScopeChange('intra-provider')}
                         >
                           <Building2 size={14} className="me-1" />
-                          Même fournisseur
+                          {t('sameProvider')}
                         </button>
                       </div>
 
@@ -331,19 +373,19 @@ export default function App() {
                           className={`btn btn-sm ${generationFilter === 'all' ? 'btn-secondary' : 'btn-outline-secondary'}`}
                           onClick={() => setGenerationFilter('all')}
                         >
-                          2 Gén. (N &amp; N-1)
+                          {t('twoGens')}
                         </button>
                         <button
                           className={`btn btn-sm ${generationFilter === 'current' ? 'btn-secondary' : 'btn-outline-secondary'}`}
                           onClick={() => setGenerationFilter('current')}
                         >
-                          Gén. N
+                          {t('genCurrent')}
                         </button>
                         <button
                           className={`btn btn-sm ${generationFilter === 'previous' ? 'btn-secondary' : 'btn-outline-secondary'}`}
                           onClick={() => setGenerationFilter('previous')}
                         >
-                          Gén. N-1
+                          {t('genPrev')}
                         </button>
                       </div>
                     </div>
@@ -351,7 +393,9 @@ export default function App() {
                     {scope === 'intra-provider' ? (
                       <div className="d-flex flex-wrap gap-1">
                         {dataset.providers.map((p) => {
-                          const count = dataset.models.filter((m) => m.provider === p.id).length;
+                          const count = dataset.models.filter(
+                            (m) => m.provider === p.id && m.status !== 'upcoming'
+                          ).length;
                           const active = selectedProvider === p.id;
                           return (
                             <button
@@ -365,18 +409,15 @@ export default function App() {
                         })}
                       </div>
                     ) : (
-                      <div className="text-secondary small">
-                        Comparaison transversale : puissance, positionnement et coût par tâche
+                      <div className="text-secondary small d-none d-md-block">
+                        {t('crossComparisonHint')}
                       </div>
                     )}
                   </div>
                 </div>
 
                 {scope === 'intra-provider' && activeProviderMeta && (
-                  <div
-                    className="card"
-                    style={{ borderLeft: `4px solid ${activeProviderMeta.color}` }}
-                  >
+                  <div className="card" style={{ borderLeft: `4px solid ${activeProviderMeta.color}` }}>
                     <div className="card-body py-2 d-flex flex-wrap justify-content-between align-items-center gap-2">
                       <div>
                         <span className="fw-bold">{activeProviderMeta.name}</span>
@@ -384,7 +425,7 @@ export default function App() {
                         <div className="text-secondary small">{activeProviderMeta.philosophy}</div>
                       </div>
                       <span className="badge bg-primary-lt text-primary">
-                        {scopedModels.length} modèle{scopedModels.length > 1 ? 's' : ''}
+                        {scopedModels.length} {t('modelsLabel')}
                       </span>
                     </div>
                   </div>
@@ -393,42 +434,42 @@ export default function App() {
                 {/* KPI Summary Cards */}
                 {kpis && (
                   <div className="row row-deck row-cards">
-                    <div className="col-sm-6 col-lg-3">
+                    <div className="col-6 col-lg-3">
                       <div className="card">
                         <div className="card-body">
                           <div className="d-flex align-items-center justify-content-between mb-2">
-                            <div className="subheader">Leader puissance</div>
-                            <Trophy size={16} className="text-primary" />
+                            <div className="subheader">{t('kpiPowerLeader')}</div>
+                            <Trophy size={15} className="text-primary" />
                           </div>
                           <div className="h3 mb-1 text-truncate">{kpis.topPower.m.name}</div>
                           <div className="text-secondary small font-mono">
-                            Score {kpis.topPower.power}/100 · {formatUsd(kpis.topPower.m.avgCostPerTaskUsd)}/t
+                            {kpis.topPower.power}/100 · {formatUsd(kpis.topPower.m.avgCostPerTaskUsd)}/t
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="col-sm-6 col-lg-3">
+                    <div className="col-6 col-lg-3">
                       <div className="card">
                         <div className="card-body">
                           <div className="d-flex align-items-center justify-content-between mb-2">
-                            <div className="subheader">Meilleure efficience</div>
-                            <Gauge size={16} className="text-success" />
+                            <div className="subheader">{t('kpiBestEfficiency')}</div>
+                            <Gauge size={15} className="text-success" />
                           </div>
                           <div className="h3 mb-1 text-truncate">{kpis.topEff.m.name}</div>
                           <div className="text-success small font-mono">
-                            EFF {kpis.topEff.eff} · PWR {kpis.topEff.power} · {formatUsd(kpis.topEff.m.avgCostPerTaskUsd)}/t
+                            EFF {kpis.topEff.eff} · {formatUsd(kpis.topEff.m.avgCostPerTaskUsd)}/t
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="col-sm-6 col-lg-3">
+                    <div className="col-6 col-lg-3">
                       <div className="card">
                         <div className="card-body">
                           <div className="d-flex align-items-center justify-content-between mb-2">
-                            <div className="subheader">Record ARC-AGI-3</div>
-                            <Zap size={16} className="text-purple" />
+                            <div className="subheader">{t('kpiArc3Record')}</div>
+                            <Zap size={15} className="text-purple" />
                           </div>
                           <div className="h3 mb-1 text-truncate">{kpis.topArc3.m.name}</div>
                           <div className="text-secondary small font-mono">
@@ -439,12 +480,12 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="col-sm-6 col-lg-3">
+                    <div className="col-6 col-lg-3">
                       <div className="card">
                         <div className="card-body">
                           <div className="d-flex align-items-center justify-content-between mb-2">
-                            <div className="subheader">Coût minimal / tâche</div>
-                            <DollarSign size={16} className="text-warning" />
+                            <div className="subheader">{t('kpiMinCost')}</div>
+                            <DollarSign size={15} className="text-warning" />
                           </div>
                           <div className="h3 mb-1 text-truncate">{kpis.cheapest.m.name}</div>
                           <div className="text-warning small font-mono">
@@ -501,6 +542,7 @@ export default function App() {
                 providers={dataset.providers}
                 benchmarks={dataset.benchmarks}
                 isHarvesting={isHarvesting}
+                isAdmin={Boolean(user?.isAdmin)}
                 onTriggerHarvest={handleHarvest}
               />
             )}
@@ -529,18 +571,54 @@ export default function App() {
               />
             )}
 
-            {activeTab === 'harvester' && (
-              <HarvesterConsole
-                dataset={dataset}
-                isHarvesting={isHarvesting}
-                onTriggerHarvest={handleHarvest}
-                onResetDataset={handleReset}
-                onUpdateModel={handleUpdateModel}
-              />
-            )}
+            {activeTab === 'harvester' &&
+              (user?.isAdmin ? (
+                <HarvesterConsole
+                  dataset={dataset}
+                  isHarvesting={isHarvesting}
+                  onTriggerHarvest={handleHarvest}
+                  onResetDataset={handleReset}
+                  onUpdateModel={handleUpdateModel}
+                />
+              ) : (
+                <div className="card">
+                  <div className="card-body text-center py-5">
+                    <Lock size={32} className="text-warning mb-2" />
+                    <h3>{t('loginRequiredHarvest')}</h3>
+                    <button className="btn btn-primary mt-2" onClick={() => setLoginOpen(true)}>
+                      {t('loginBtn')}
+                    </button>
+                  </div>
+                </div>
+              ))}
+
+            {activeTab === 'admin' &&
+              (user?.isAdmin ? (
+                <AdminDashboard />
+              ) : (
+                <div className="card">
+                  <div className="card-body text-center py-5">
+                    <Lock size={32} className="text-warning mb-2" />
+                    <h3>{t('loginModalTitle')}</h3>
+                    <button className="btn btn-primary mt-2" onClick={() => setLoginOpen(true)}>
+                      {t('loginBtn')}
+                    </button>
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
       </div>
+
+      <LoginModal
+        open={loginOpen}
+        googleClientId={googleClientId}
+        onClose={() => setLoginOpen(false)}
+        onSuccess={(u) => {
+          setUser(u);
+          showToast(`Connecté en tant que ${u.name} (${u.email}).`);
+        }}
+      />
 
       <NeuralOrb
         isHarvesting={isHarvesting}

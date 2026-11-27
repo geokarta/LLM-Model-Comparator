@@ -1,19 +1,38 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import fs from 'node:fs';
 import path from 'node:path';
 import swaggerUi from 'swagger-ui-express';
 import { loadDataset, runHarvest, saveDataset } from './harvester.ts';
 import { createSeedDataset } from './seedData.ts';
 import { buildOpenApiSpec } from './openapi.ts';
+import { getArchivedHarvestCount, getPersistenceMode } from './storage.ts';
+import {
+  clearSessionCookie,
+  createApiKey,
+  getAuthPublicConfig,
+  getSessionUser,
+  listApiKeys,
+  requireAdmin,
+  requireApiToken,
+  revokeApiKey,
+  setSessionCookie,
+  verifyAdminPassword,
+  verifyGoogleIdToken,
+} from './auth.ts';
+import { apiMonitoringMiddleware, getMonitoringSummary, recordPageView } from './analytics.ts';
 import { LLMModel } from '../shared/types.ts';
 
 const app = express();
 const PORT = Number(process.env.PORT ?? 3001);
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 
+app.set('trust proxy', 1);
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json({ limit: '5mb' }));
+app.use(apiMonitoringMiddleware);
 
 // Cached live FX rates (USD base) with resilient fallback
 const FALLBACK_FX: Record<string, number> = {
@@ -82,7 +101,109 @@ function roundUsd(n: number): number {
 
 // Health check
 app.get('/api/health', (_req, res) => {
-  res.json({ status: 'online', service: 'aether9-llm-telemetry', timestamp: new Date().toISOString() });
+  res.json({
+    status: 'online',
+    service: 'ai-model-insight',
+    persistence: getPersistenceMode(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// ==================== AUTH ROUTES (Task 4) ====================
+app.get('/api/auth/me', (req, res) => {
+  res.json({
+    user: getSessionUser(req),
+    config: getAuthPublicConfig(),
+  });
+});
+
+app.post('/api/auth/google', async (req, res) => {
+  const credential = String(req.body?.credential ?? '');
+  const user = await verifyGoogleIdToken(credential);
+  if (!user) {
+    res.status(401).json({ error: 'Jeton Google invalide ou non vérifié.' });
+    return;
+  }
+  setSessionCookie(res, user);
+  res.json({ user });
+});
+
+app.post('/api/auth/login', (req, res) => {
+  const password = String(req.body?.password ?? '');
+  const user = verifyAdminPassword(password);
+  if (!user) {
+    res.status(401).json({ error: 'Clé administrateur invalide.' });
+    return;
+  }
+  setSessionCookie(res, user);
+  res.json({ user });
+});
+
+app.post('/api/auth/logout', (_req, res) => {
+  clearSessionCookie(res);
+  res.json({ ok: true });
+});
+
+// ==================== ANALYTICS & ADMIN ROUTES (Tasks 5 & 6) ====================
+app.post('/api/analytics/pageview', async (req, res) => {
+  try {
+    const page = String(req.body?.page ?? 'comparator');
+    const lang = String(req.body?.lang ?? 'fr');
+    await recordPageView(req, page, lang);
+    res.json({ ok: true });
+  } catch {
+    res.json({ ok: false });
+  }
+});
+
+app.get('/api/admin/keys', requireAdmin, async (_req, res) => {
+  try {
+    const keys = await listApiKeys();
+    res.json({ keys });
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Erreur lecture clés API' });
+  }
+});
+
+app.post('/api/admin/keys', requireAdmin, async (req, res) => {
+  try {
+    const name = String(req.body?.name ?? 'API Client');
+    const created = await createApiKey(name);
+    res.status(201).json(created);
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Erreur création clé API' });
+  }
+});
+
+app.delete('/api/admin/keys/:id', requireAdmin, async (req, res) => {
+  try {
+    const ok = await revokeApiKey(String(req.params.id));
+    if (!ok) {
+      res.status(404).json({ error: 'Clé introuvable.' });
+      return;
+    }
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Erreur révocation clé API' });
+  }
+});
+
+app.get('/api/admin/monitoring', requireAdmin, async (_req, res) => {
+  try {
+    const [summary, archivedHarvests, keys] = await Promise.all([
+      getMonitoringSummary(),
+      getArchivedHarvestCount(),
+      listApiKeys(),
+    ]);
+    res.json({
+      persistence: getPersistenceMode(),
+      archivedHarvests,
+      activeApiKeys: keys.filter((k) => !k.revoked).length,
+      summary,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'Erreur lecture monitoring' });
+  }
 });
 
 // OpenAPI 3.0.3 JSON specification
@@ -114,8 +235,8 @@ app.get('/swagger', (_req, res) => {
   res.redirect('/api/docs');
 });
 
-// List all models (supports optional ?provider=... and ?generation=current|previous)
-app.get('/api/models', async (req, res) => {
+// List all models (Token-protected REST API)
+app.get('/api/models', requireApiToken, async (req, res) => {
   try {
     const dataset = await loadDataset();
     const providerParam = String(req.query.provider ?? req.query.company ?? '').trim().toLowerCase();
@@ -169,8 +290,8 @@ async function handleListProviders(_req: express.Request, res: express.Response)
   }
 }
 
-app.get('/api/providers', handleListProviders);
-app.get('/api/companies', handleListProviders);
+app.get('/api/providers', requireApiToken, handleListProviders);
+app.get('/api/companies', requireApiToken, handleListProviders);
 
 // List all models for a specific provider / company
 async function handleProviderModels(req: express.Request, res: express.Response) {
@@ -208,8 +329,8 @@ async function handleProviderModels(req: express.Request, res: express.Response)
   }
 }
 
-app.get('/api/providers/:provider/models', handleProviderModels);
-app.get('/api/companies/:provider/models', handleProviderModels);
+app.get('/api/providers/:provider/models', requireApiToken, handleProviderModels);
+app.get('/api/companies/:provider/models', requireApiToken, handleProviderModels);
 
 // REST API #3: Batch total cost (input + output) for a list of models in USD, CAD, and requested currency
 async function handleBatchTokenCost(req: express.Request, res: express.Response) {
@@ -343,10 +464,10 @@ async function handleBatchTokenCost(req: express.Request, res: express.Response)
   }
 }
 
-app.get('/api/cost/batch', handleBatchTokenCost);
-app.post('/api/cost/batch', handleBatchTokenCost);
-app.get('/api/cost/compare', handleBatchTokenCost);
-app.post('/api/cost/compare', handleBatchTokenCost);
+app.get('/api/cost/batch', requireApiToken, handleBatchTokenCost);
+app.post('/api/cost/batch', requireApiToken, handleBatchTokenCost);
+app.get('/api/cost/compare', requireApiToken, handleBatchTokenCost);
+app.post('/api/cost/compare', requireApiToken, handleBatchTokenCost);
 
 // REST API #1: Single-direction token cost (GET or POST /api/cost/token)
 async function handleSingleTokenCost(req: express.Request, res: express.Response) {
@@ -419,8 +540,11 @@ async function handleSingleTokenCost(req: express.Request, res: express.Response
   }
 }
 
-app.get('/api/cost/token', handleSingleTokenCost);
-app.post('/api/cost/token', handleSingleTokenCost);
+app.get('/api/cost/token', requireApiToken, handleSingleTokenCost);
+app.post('/api/cost/token', requireApiToken, handleSingleTokenCost);
+// Internal web UI simulator routes (allows interactive simulator page for public visitors)
+app.get('/api/ui/cost/token', handleSingleTokenCost);
+app.get('/api/ui/cost/total', handleTotalTokenCost);
 
 // REST API #2: Total cost for input + output tokens in USD, CAD, and requested currency (GET or POST /api/cost/total)
 async function handleTotalTokenCost(req: express.Request, res: express.Response) {
@@ -514,8 +638,8 @@ async function handleTotalTokenCost(req: express.Request, res: express.Response)
   }
 }
 
-app.get('/api/cost/total', handleTotalTokenCost);
-app.post('/api/cost/total', handleTotalTokenCost);
+app.get('/api/cost/total', requireApiToken, handleTotalTokenCost);
+app.post('/api/cost/total', requireApiToken, handleTotalTokenCost);
 
 // Get full telemetry dataset
 app.get('/api/telemetry', async (_req, res) => {
@@ -527,8 +651,8 @@ app.get('/api/telemetry', async (_req, res) => {
   }
 });
 
-// Trigger live harvest
-app.post('/api/harvest', async (_req, res) => {
+// Trigger live harvest (Admin only)
+app.post('/api/harvest', requireAdmin, async (_req, res) => {
   try {
     const { dataset, record } = await runHarvest('ui');
     res.json({ dataset, record });
@@ -537,8 +661,8 @@ app.post('/api/harvest', async (_req, res) => {
   }
 });
 
-// Update a model's benchmark scores or pricing manually
-app.patch('/api/models/:id', async (req, res) => {
+// Update a model's benchmark scores or pricing manually (Admin only)
+app.patch('/api/models/:id', requireAdmin, async (req, res) => {
   try {
     const dataset = await loadDataset();
     const idx = dataset.models.findIndex((m) => m.id === req.params.id);
@@ -569,8 +693,8 @@ app.patch('/api/models/:id', async (req, res) => {
   }
 });
 
-// Add a custom model
-app.post('/api/models', async (req, res) => {
+// Add a custom model (Admin only)
+app.post('/api/models', requireAdmin, async (req, res) => {
   try {
     const dataset = await loadDataset();
     const incoming = req.body as LLMModel;
@@ -591,8 +715,8 @@ app.post('/api/models', async (req, res) => {
   }
 });
 
-// Reset to baseline seed
-app.post('/api/reset', async (_req, res) => {
+// Reset to baseline seed (Admin only)
+app.post('/api/reset', requireAdmin, async (_req, res) => {
   try {
     const seed = createSeedDataset();
     await saveDataset(seed);

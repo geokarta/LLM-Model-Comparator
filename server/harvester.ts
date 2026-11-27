@@ -1,5 +1,3 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
 import {
   HarvestChangeEntry,
   HarvestRecord,
@@ -8,34 +6,18 @@ import {
   ProviderId,
   TelemetryDataset,
 } from '../shared/types.ts';
-import { createSeedDataset, DATASET_VERSION } from './seedData.ts';
-
-const DATA_DIR = path.resolve(process.cwd(), 'data');
-const DATA_FILE = path.join(DATA_DIR, 'telemetry.json');
+import {
+  archiveHarvestRun,
+  loadPersistedDataset,
+  savePersistedDataset,
+} from './storage.ts';
 
 export async function loadDataset(): Promise<TelemetryDataset> {
-  try {
-    const raw = await fs.readFile(DATA_FILE, 'utf-8');
-    const parsed = JSON.parse(raw) as TelemetryDataset;
-    if (
-      parsed &&
-      parsed.version === DATASET_VERSION &&
-      Array.isArray(parsed.models) &&
-      Array.isArray(parsed.benchmarks)
-    ) {
-      return parsed;
-    }
-  } catch {
-    // Seed if file doesn't exist yet or version changed
-  }
-  const seed = createSeedDataset();
-  await saveDataset(seed);
-  return seed;
+  return loadPersistedDataset();
 }
 
 export async function saveDataset(dataset: TelemetryDataset): Promise<void> {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  await fs.writeFile(DATA_FILE, JSON.stringify(dataset, null, 2), 'utf-8');
+  return savePersistedDataset(dataset);
 }
 
 interface OpenRouterModel {
@@ -501,8 +483,9 @@ export async function runHarvest(trigger: 'ui' | 'cli' = 'ui'): Promise<{
     changes,
   };
 
-  dataset.harvestHistory = [record, ...dataset.harvestHistory].slice(0, 25);
+  dataset.harvestHistory = [record, ...dataset.harvestHistory].slice(0, 50);
   await saveDataset(dataset);
+  await archiveHarvestRun(record);
 
   return { dataset, record };
 }

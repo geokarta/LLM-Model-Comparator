@@ -224,6 +224,7 @@ export function NeuralOrb({ isHarvesting, pinnedCount, accentColor = '#3b82f6' }
 
   return (
     <div
+      className="neural-orb-container"
       style={{
         position: 'fixed',
         right: 18,

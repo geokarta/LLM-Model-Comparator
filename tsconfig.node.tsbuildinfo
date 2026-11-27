@@ -1,1 +1,1 @@
-{"root":["./vite.config.ts","./server/harvester.ts","./server/index.ts","./server/openapi.ts","./server/run-harvest.ts","./server/seeddata.ts","./shared/metrics.ts","./shared/types.ts"],"version":"5.9.3"}
+{"root":["./vite.config.ts","./server/analytics.ts","./server/auth.ts","./server/harvester.ts","./server/index.ts","./server/openapi.ts","./server/run-harvest.ts","./server/seeddata.ts","./server/storage.ts","./shared/metrics.ts","./shared/types.ts"],"version":"5.9.3"}

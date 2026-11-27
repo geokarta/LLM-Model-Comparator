@@ -7,6 +7,7 @@ import {
   formatContext,
   formatUsd,
 } from '../../shared/metrics.ts';
+import { useI18n } from '../i18n/I18nContext.tsx';
 
 interface TelemetryMatrixProps {
   models: LLMModel[];
@@ -46,6 +47,7 @@ export function TelemetryMatrix({
   onTogglePin,
   onInspectBenchmark,
 }: TelemetryMatrixProps) {
+  const { t } = useI18n();
   const [search, setSearch] = useState('');
   const [tierFilter, setTierFilter] = useState<'all' | ModelTier>('all');
   const [openWeightOnly, setOpenWeightOnly] = useState(false);
@@ -127,11 +129,9 @@ export function TelemetryMatrix({
         <div>
           <h3 className="card-title d-flex align-items-center gap-2 mb-0">
             <Table2 size={16} className="text-primary" />
-            Matrice des modèles ({rows.length})
+            {t('matrixTitle')} ({rows.length})
           </h3>
-          <div className="text-secondary small">
-            Cliquez sur une ligne pour épingler au radar. Cliquez sur les en-têtes pour trier.
-          </div>
+          <div className="text-secondary small">{t('matrixSubtitle')}</div>
         </div>
 
         <div className="d-flex flex-wrap gap-2 align-items-center">
@@ -142,7 +142,7 @@ export function TelemetryMatrix({
             <input
               type="text"
               className="form-control form-control-sm"
-              placeholder="Rechercher un modèle..."
+              placeholder={t('searchPlaceholder')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -153,7 +153,7 @@ export function TelemetryMatrix({
             value={tierFilter}
             onChange={(e) => setTierFilter(e.target.value as 'all' | ModelTier)}
           >
-            <option value="all">Tous positionnements</option>
+            <option value="all">{t('allTiers')}</option>
             <option value="flagship">Flagship</option>
             <option value="reasoning">Reasoning</option>
             <option value="balanced">Équilibré</option>

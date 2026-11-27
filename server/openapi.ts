@@ -5,8 +5,24 @@ export function buildOpenApiSpec(serverUrl: string) {
       title: 'AI Model Insight API',
       version: '2026.11.3',
       description:
-        'API REST complète pour consulter les modèles LLM (2 dernières générations, 8 fournisseurs), leurs benchmarks (ARC-AGI 1/2/3, SWE-bench, GPQA, HLE, etc.), calculer les coûts par tokens en USD/CAD/devises live, et déclencher le moissonnage des tarifs.',
+        'API REST protégée par Token (`X-API-Key` ou `Authorization: Bearer <token>`) pour consulter les modèles LLM (2 dernières générations, 8 fournisseurs), calculer les coûts par tokens en USD/CAD/devises live, et administrer le moissonnage.',
     },
+    components: {
+      securitySchemes: {
+        ApiKeyAuth: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'X-API-Key',
+          description: 'Token API généré depuis la console Admin',
+        },
+        BearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          description: 'Même token API passé en Authorization: Bearer <token>',
+        },
+      },
+    },
+    security: [{ ApiKeyAuth: [] }, { BearerAuth: [] }],
     servers: [
       {
         url: serverUrl,

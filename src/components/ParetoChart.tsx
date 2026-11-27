@@ -10,6 +10,7 @@ import {
   normalizeScore,
 } from '../../shared/metrics.ts';
 import { PlotlyChart } from './PlotlyChart.tsx';
+import { useI18n } from '../i18n/I18nContext.tsx';
 
 interface ParetoChartProps {
   models: LLMModel[];
@@ -43,6 +44,7 @@ export function ParetoChart({
   pinnedIds,
   onTogglePin,
 }: ParetoChartProps) {
+  const { t } = useI18n();
   const [yMetric, setYMetric] = useState<YMetric>('power_index');
   const [xMetric, setXMetric] = useState<XMetric>('avg_task_cost');
   const [logScale, setLogScale] = useState(true);
@@ -209,11 +211,9 @@ export function ParetoChart({
         <div>
           <h3 className="card-title d-flex align-items-center gap-2 mb-0">
             <Crosshair size={16} className="text-primary" />
-            Positionnement &amp; Frontière de Pareto
+            {t('paretoTitle')}
           </h3>
-          <div className="text-secondary small">
-            Glisser pour déplacer (pan) · Molette pour zoomer · Double-clic pour réinitialiser · Clic sur un point pour épingler.
-          </div>
+          <div className="text-secondary small">{t('paretoSubtitle')}</div>
         </div>
 
         <div className="d-flex flex-wrap gap-2 align-items-center">
@@ -248,13 +248,13 @@ export function ParetoChart({
               className={`btn ${logScale ? 'btn-primary' : 'btn-outline-secondary'}`}
               onClick={() => setLogScale(true)}
             >
-              Échelle Log
+              {t('scaleLog')}
             </button>
             <button
               className={`btn ${!logScale ? 'btn-primary' : 'btn-outline-secondary'}`}
               onClick={() => setLogScale(false)}
             >
-              Normal
+              {t('scaleNormal')}
             </button>
           </div>
         </div>

@@ -12,9 +12,12 @@
     "deploy": "gcloud run deploy ai-model-insight --source . --project=aether9-llm-matrix-2026 --region=us-east1 --allow-unauthenticated --memory=512Mi --cpu=1 --min-instances=0 --max-instances=5 --quiet"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^9.4.1",
     "@tabler/core": "^1.7.5",
+    "@types/cookie-parser": "^1.4.10",
     "@types/plotly.js": "^3.0.15",
     "@types/swagger-ui-express": "^4.1.8",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "lucide-react": "^0.511.0",

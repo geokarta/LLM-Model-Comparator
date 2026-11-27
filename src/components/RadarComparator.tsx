@@ -10,6 +10,7 @@ import {
   normalizeScore,
 } from '../../shared/metrics.ts';
 import { PlotlyChart } from './PlotlyChart.tsx';
+import { useI18n } from '../i18n/I18nContext.tsx';
 
 interface RadarComparatorProps {
   pinnedModels: LLMModel[];
@@ -37,6 +38,7 @@ export function RadarComparator({
   providers,
   onUnpin,
 }: RadarComparatorProps) {
+  const { t } = useI18n();
   const providerMap = useMemo(
     () => new Map(providers.map((p) => [p.id, p])),
     [providers]
@@ -104,14 +106,12 @@ export function RadarComparator({
         <div>
           <h3 className="card-title d-flex align-items-center gap-2 mb-0">
             <RadarIcon size={16} className="text-primary" />
-            Radar Multi-Benchmarks
+            {t('radarTitle')}
           </h3>
-          <div className="text-secondary small">
-            Glissez sur l’axe radial pour zoomer ou utilisez la barre Plotly · Cliquez la légende pour masquer.
-          </div>
+          <div className="text-secondary small">{t('radarSubtitle')}</div>
         </div>
         <span className="badge bg-primary-lt text-primary font-mono">
-          {pinnedModels.length} / 5 épinglés
+          {pinnedModels.length} / 5 {t('pinnedLabel')}
         </span>
       </div>
 

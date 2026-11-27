@@ -22,6 +22,7 @@ interface TimelinePageProps {
   providers: ProviderMeta[];
   benchmarks: BenchmarkDefinition[];
   isHarvesting: boolean;
+  isAdmin: boolean;
   onTriggerHarvest: () => void;
 }
 
@@ -60,6 +61,7 @@ export function TimelinePage({
   providers,
   benchmarks,
   isHarvesting,
+  isAdmin,
   onTriggerHarvest,
 }: TimelinePageProps) {
   const [filterMode, setFilterMode] = useState<CompanyFilterMode>('all');
@@ -263,15 +265,17 @@ export function TimelinePage({
           </div>
 
           <div className="d-flex flex-wrap align-items-center gap-2">
-            <button
-              className="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1"
-              onClick={onTriggerHarvest}
-              disabled={isHarvesting}
-              title="Découvrir et importer les nouveaux modèles publiés via OpenRouter"
-            >
-              <RefreshCw size={13} className={isHarvesting ? 'spin' : ''} />
-              {isHarvesting ? 'Moissonnage...' : 'Moissonner nouveaux modèles'}
-            </button>
+            {isAdmin && (
+              <button
+                className="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1"
+                onClick={onTriggerHarvest}
+                disabled={isHarvesting}
+                title="Découvrir et importer les nouveaux modèles publiés via OpenRouter"
+              >
+                <RefreshCw size={13} className={isHarvesting ? 'spin' : ''} />
+                {isHarvesting ? 'Moissonnage...' : 'Moissonner nouveaux modèles'}
+              </button>
+            )}
 
             <button
               className={`btn btn-sm ${showUpcoming ? 'btn-warning' : 'btn-outline-secondary'}`}

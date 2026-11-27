@@ -191,3 +191,64 @@ body {
   border-color: rgba(148, 163, 184, 0.3) !important;
 }
 
+/* Mobile-first Responsive Enhancements (Task 2) */
+.mobile-nav-drawer {
+  background-color: #192434;
+  border-top: 1px solid var(--tblr-border-color);
+  padding: 12px 16px;
+}
+
+.mobile-scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 767.98px) {
+  .container-xl {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .page-body {
+    margin-top: 0.75rem !important;
+    margin-bottom: 4.5rem !important;
+  }
+
+  .card-header {
+    padding: 0.75rem 0.85rem !important;
+  }
+
+  .card-body {
+    padding: 0.85rem !important;
+  }
+
+  .card-title {
+    font-size: 0.95rem !important;
+  }
+
+  .btn-group {
+    flex-wrap: wrap;
+  }
+
+  .form-select.w-auto {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .table td,
+  .table th {
+    padding: 0.5rem 0.45rem !important;
+    font-size: 0.76rem !important;
+  }
+
+  /* Keep floating orb super discreet on small mobile screens */
+  .neural-orb-container {
+    right: 10px !important;
+    bottom: 10px !important;
+    transform: scale(0.72);
+    transform-origin: bottom right;
+  }
+}
+
+

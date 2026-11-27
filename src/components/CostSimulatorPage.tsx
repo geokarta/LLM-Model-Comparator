@@ -87,7 +87,7 @@ export function CostSimulatorPage({ models, providers }: CostSimulatorPageProps)
         outputTokens: String(Math.max(0, outputTokens)),
         currency,
       });
-      const res = await fetch(`/api/cost/total?${qs.toString()}`);
+      const res = await fetch(`/api/ui/cost/total?${qs.toString()}`);
       if (res.ok) {
         const data = (await res.json()) as TotalCostApiResponse;
         setApiResult(data);
@@ -112,7 +112,7 @@ export function CostSimulatorPage({ models, providers }: CostSimulatorPageProps)
       direction: singleDirection,
       currency,
     });
-    const res = await fetch(`/api/cost/token?${qs.toString()}`);
+    const res = await fetch(`/api/ui/cost/token?${qs.toString()}`);
     const data = await res.json();
     setSingleApiPreview(JSON.stringify(data, null, 2));
     emitOrbSignal({ type: 'simulate', color: '#10b981', intensity: 1.1, label: 'API /cost/token OK' });
@@ -432,10 +432,11 @@ export function CostSimulatorPage({ models, providers }: CostSimulatorPageProps)
           <div>
             <h3 className="card-title d-flex align-items-center gap-2 mb-0">
               <Code2 size={16} className="text-primary" />
-              Endpoints REST API disponibles (GET &amp; POST)
+              Endpoints REST API protégés par Token (GET &amp; POST)
             </h3>
             <div className="text-secondary small">
-              Intégrez ces calculs directement dans vos scripts, backends ou workflows externes.
+              Passez votre token via le header <code className="font-mono">X-API-Key: &lt;token&gt;</code> ou{' '}
+              <code className="font-mono">Authorization: Bearer &lt;token&gt;</code> (généré dans Admin &amp; Monitoring).
             </div>
           </div>
           <div className="d-flex flex-wrap gap-1">
